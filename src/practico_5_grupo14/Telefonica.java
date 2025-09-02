@@ -28,20 +28,65 @@ public class Telefonica extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mItemAgregarAlumno = new javax.swing.JMenuItem();
+        mItemBuscarCliente = new javax.swing.JMenuItem();
+        mItemBorrarCliente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        mItemBuscarClienteCiudad = new javax.swing.JMenuItem();
+        mItemBuscarClienteApellido = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Clientes");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
+        mItemAgregarAlumno.setText("Agregar Cliente");
+        mItemAgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemAgregarAlumnoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mItemAgregarAlumno);
+
+        mItemBuscarCliente.setText("Buscar Cliente");
+        jMenu1.add(mItemBuscarCliente);
+
+        mItemBorrarCliente.setText("Borrar Cliente");
+        jMenu1.add(mItemBorrarCliente);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Directorio");
+
+        mItemBuscarClienteCiudad.setText("Buscar Clientes por Ciudad");
+        jMenu2.add(mItemBuscarClienteCiudad);
+
+        mItemBuscarClienteApellido.setText("Buscar Telefono por Apellido");
+        mItemBuscarClienteApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemBuscarClienteApellidoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mItemBuscarClienteApellido);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Ciudades");
+
+        jMenuItem1.setText("Agregar Ciudad");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Salir");
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -58,6 +103,18 @@ public class Telefonica extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mItemAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAgregarAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mItemAgregarAlumnoActionPerformed
+
+    private void mItemBuscarClienteApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBuscarClienteApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mItemBuscarClienteApellidoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,7 +154,14 @@ public class Telefonica extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem mItemAgregarAlumno;
+    private javax.swing.JMenuItem mItemBorrarCliente;
+    private javax.swing.JMenuItem mItemBuscarCliente;
+    private javax.swing.JMenuItem mItemBuscarClienteApellido;
+    private javax.swing.JMenuItem mItemBuscarClienteCiudad;
     // End of variables declaration//GEN-END:variables
 }
