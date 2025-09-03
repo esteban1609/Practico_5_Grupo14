@@ -4,17 +4,20 @@
  */
 package practico_5_grupo14;
 
+import clases.*;
+
 /**
  *
  * @author Leandro Naranjo
  */
 public class Telefonica extends javax.swing.JFrame {
-
+    public static DirectorioTelefonico d1 = new DirectorioTelefonico();
     /**
      * Creates new form Telefonica
      */
     public Telefonica() {
         initComponents();
+        
     }
 
     /**
@@ -45,11 +48,11 @@ public class Telefonica extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
+            .addGap(0, 591, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 315, Short.MAX_VALUE)
+            .addGap(0, 421, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Clientes");
@@ -63,11 +66,6 @@ public class Telefonica extends javax.swing.JFrame {
         jMenu1.add(mItemAgregarAlumno);
 
         mItemBuscarCliente.setText("Buscar Cliente");
-        mItemBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mItemBuscarClienteActionPerformed(evt);
-            }
-        });
         jMenu1.add(mItemBuscarCliente);
 
         mItemBorrarCliente.setText("Borrar Cliente");
@@ -111,17 +109,11 @@ public class Telefonica extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1)
-                .addGap(82, 82, 82))
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1)
-                .addGap(100, 100, 100))
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -138,10 +130,6 @@ public class Telefonica extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void mItemBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBuscarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mItemBuscarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,14 +157,16 @@ public class Telefonica extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Telefonica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Telefonica().setVisible(true);
             }
         });
+    
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
