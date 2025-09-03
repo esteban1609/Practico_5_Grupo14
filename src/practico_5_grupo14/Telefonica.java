@@ -34,7 +34,7 @@ public class Telefonica extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        mItemAgregarAlumno = new javax.swing.JMenuItem();
+        mItemAgregarCliente = new javax.swing.JMenuItem();
         mItemBuscarCliente = new javax.swing.JMenuItem();
         mItemBorrarCliente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -60,18 +60,28 @@ public class Telefonica extends javax.swing.JFrame {
 
         jMenu1.setText("Clientes");
 
-        mItemAgregarAlumno.setText("Agregar Cliente");
-        mItemAgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mItemAgregarAlumnoActionPerformed(evt);
+        mItemAgregarCliente.setText("Agregar Cliente");
+        mItemAgregarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mItemAgregarClienteMouseClicked(evt);
             }
         });
-        jMenu1.add(mItemAgregarAlumno);
+        mItemAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemAgregarClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mItemAgregarCliente);
 
         mItemBuscarCliente.setText("Buscar Cliente");
         jMenu1.add(mItemBuscarCliente);
 
         mItemBorrarCliente.setText("Borrar Cliente");
+        mItemBorrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mItemBorrarClienteMouseClicked(evt);
+            }
+        });
         mItemBorrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mItemBorrarClienteActionPerformed(evt);
@@ -127,10 +137,17 @@ public class Telefonica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mItemAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAgregarAlumnoActionPerformed
+    private void mItemAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAgregarClienteActionPerformed
         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        agregarCliente ac = new agregarCliente();
+        ac.setVisible(true);
+        escritorio.add(ac);
+        ac.toFront();
+        
        
-    }//GEN-LAST:event_mItemAgregarAlumnoActionPerformed
+    }//GEN-LAST:event_mItemAgregarClienteActionPerformed
 
     private void mItemBuscarClienteApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBuscarClienteApellidoActionPerformed
         // TODO add your handling code here:
@@ -138,6 +155,7 @@ public class Telefonica extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void mItemBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBorrarClienteActionPerformed
@@ -146,8 +164,21 @@ public class Telefonica extends javax.swing.JFrame {
         escritorio.repaint();
         borrarCliente bc = new borrarCliente();
         bc.setVisible(true);
-        escritorio.moveToFront(bc);
+        escritorio.add(bc);
+        bc.toFront();
+        
     }//GEN-LAST:event_mItemBorrarClienteActionPerformed
+
+    private void mItemAgregarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemAgregarClienteMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_mItemAgregarClienteMouseClicked
+
+    private void mItemBorrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemBorrarClienteMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_mItemBorrarClienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -194,7 +225,7 @@ public class Telefonica extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem mItemAgregarAlumno;
+    private javax.swing.JMenuItem mItemAgregarCliente;
     private javax.swing.JMenuItem mItemBorrarCliente;
     private javax.swing.JMenuItem mItemBuscarCliente;
     private javax.swing.JMenuItem mItemBuscarClienteApellido;

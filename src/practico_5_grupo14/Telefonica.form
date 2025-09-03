@@ -9,12 +9,13 @@
             <Property name="text" type="java.lang.String" value="Clientes"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mItemAgregarAlumno">
+            <MenuItem class="javax.swing.JMenuItem" name="mItemAgregarCliente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar Cliente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItemAgregarAlumnoActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mItemAgregarClienteMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItemAgregarClienteActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mItemBuscarCliente">
@@ -27,6 +28,7 @@
                 <Property name="text" type="java.lang.String" value="Borrar Cliente"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mItemBorrarClienteMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mItemBorrarClienteActionPerformed"/>
               </Events>
             </MenuItem>

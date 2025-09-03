@@ -21,9 +21,19 @@ public class DirectorioTelefonico {
 su DNI, nombre, apellido, Ciudad y dirección. El Directorio, cuenta con un TreeMap de un teléfono
 tipo Long(Key),se empareja con un Contacto(valor).*/
     TreeMap<Long, Contacto> cliente=new TreeMap<>();
+    
 
     public DirectorioTelefonico() {
     }
+
+    public TreeMap<Long, Contacto> getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(TreeMap<Long, Contacto> cliente) {
+        this.cliente = cliente;
+    }
+    
    /*A. agregarContacto() que permite registrar un nuevo contacto con su respectivo nro. de
 teléfono. Siendo el nro. del teléfono la clave del mismo.
 B. buscarContacto() que en base al nro. de teléfono retorna el Contacto asociado al mismo.

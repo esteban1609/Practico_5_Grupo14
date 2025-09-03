@@ -6,6 +6,8 @@
 package practico_5_grupo14;
 
 import clases.Contacto;
+import java.util.Map;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,19 +16,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Anitabonita
  */
 public class borrarCliente extends javax.swing.JFrame {
-    private DefaultTableModel modelo = new DefaultTableModel(){
-        
-        public boolean isCellEditable(int fila, int column){
+
+    private DefaultTableModel modelo = new DefaultTableModel() {
+
+        public boolean isCellEditable(int fila, int column) {
             return false;
         }
     };
-    
+    DefaultListModel modeloLista = new DefaultListModel();
+
     /**
      * Creates new form borrarCliente
      */
     public borrarCliente() {
         initComponents();
         armarCabecera();
+        llenarListaDni();
     }
 
     /**
@@ -59,6 +64,11 @@ public class borrarCliente extends javax.swing.JFrame {
         txtDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDniActionPerformed(evt);
+            }
+        });
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDniKeyReleased(evt);
             }
         });
 
@@ -169,15 +179,15 @@ public class borrarCliente extends javax.swing.JFrame {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        int filaSele=tablaClientes.getSelectedRow();
-        if(filaSele!=-1){
+        int filaSele = tablaClientes.getSelectedRow();
+        if (filaSele != -1) {
             long telefono = (Long) tablaClientes.getValueAt(filaSele, 5);
             modelo.removeRow(filaSele);
             Telefonica.d1.borrarContacto(telefono);
             JOptionPane.showMessageDialog(this, "Cliente borrado");
             txtDni.setText("");
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "seleccione que cliente desea borrar");
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
@@ -187,10 +197,28 @@ public class borrarCliente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void txtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyReleased
+        // TODO add your handling code here:
+        try {
+            int dniEncontrado = Integer.parseInt(txtDni.getText());
+            for (Contacto c : Telefonica.d1.getCliente().values()) {
+                int dni = c.getDni();
+                if (dni == dniEncontrado) {
+                    modeloLista.addElement(dni);
+                } else {
+                    JOptionPane.showMessageDialog(this, "no existe nadie en esta lista con este dni");
+                }
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "este campo solo acepta numeros");
+        }
+
+
+    }//GEN-LAST:event_txtDniKeyReleased
+
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
@@ -200,12 +228,12 @@ public class borrarCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlBorrarCliente;
     private javax.swing.JLabel jlDni;
-    private javax.swing.JList<String> listDni;
+    private javax.swing.JList<Integer> listDni;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtDni;
     // End of variables declaration//GEN-END:variables
-    
-    private void armarCabecera(){
+
+    private void armarCabecera() {
         modelo.addColumn("DNI");
         modelo.addColumn("Apellido");
         modelo.addColumn("Nombre");
@@ -213,7 +241,13 @@ public class borrarCliente extends javax.swing.JFrame {
         modelo.addColumn("Ciudad");
         modelo.addColumn("Telefono");
         tablaClientes.setModel(modelo);
-        
+
     }
 
+    private void llenarListaDni() {
+        for (Contacto c : Telefonica.d1.getCliente().values()) {
+            int dni = c.getDni();
+            modeloLista.addElement(dni);
+        }
+    }
 }
