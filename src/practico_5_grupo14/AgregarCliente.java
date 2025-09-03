@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author X
  */
-public class AgregarContacto extends javax.swing.JInternalFrame {
+public class AgregarCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AgregarContacto
      */
-    public AgregarContacto() {
+    public AgregarCliente() {
         initComponents();
     }
 

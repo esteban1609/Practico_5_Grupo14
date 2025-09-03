@@ -14,7 +14,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Anitabonita
  */
 public class borrarCliente extends javax.swing.JFrame {
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        
+        public boolean isCellEditable(int fila, int column){
+            return false;
+        }
+    };
+    
     /**
      * Creates new form borrarCliente
      */
