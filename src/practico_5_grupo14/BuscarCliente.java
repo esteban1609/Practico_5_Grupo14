@@ -27,48 +27,169 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlTelefono = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jtpTelefono = new javax.swing.JTextPane();
         SalirBuscarCliente1 = new javax.swing.JButton();
+        jtTelefono = new javax.swing.JTextField();
+        jlApellido = new javax.swing.JLabel();
+        jlNombre = new javax.swing.JLabel();
+        jlDNI = new javax.swing.JLabel();
+        jlCiudad = new javax.swing.JLabel();
+        jlDomicilio = new javax.swing.JLabel();
+        jtDNI = new javax.swing.JTextField();
+        jtApellido = new javax.swing.JTextField();
+        jtNombre = new javax.swing.JTextField();
+        jtCiudad = new javax.swing.JTextField();
+        jtDomicilio = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setTitle("Buscar Clientes");
         setToolTipText("");
 
-        jLabel1.setText("jLabel1");
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jlTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        jlTelefono.setText("Teléfono:");
+
+        jtpTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        jtpTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(jtpTelefono);
 
         SalirBuscarCliente1.setText("Salir");
+
+        jtTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        jtTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        jtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtTelefonoActionPerformed(evt);
+            }
+        });
+
+        jlApellido.setForeground(new java.awt.Color(0, 0, 0));
+        jlApellido.setText("Apellido:");
+
+        jlNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jlNombre.setText("Nombre:");
+
+        jlDNI.setForeground(new java.awt.Color(0, 0, 0));
+        jlDNI.setText("DNI:");
+
+        jlCiudad.setForeground(new java.awt.Color(0, 0, 0));
+        jlCiudad.setText("Ciudad:");
+
+        jlDomicilio.setForeground(new java.awt.Color(0, 0, 0));
+        jlDomicilio.setText("Domicilio:");
+
+        jtDNI.setEditable(false);
+        jtDNI.setBackground(new java.awt.Color(255, 255, 255));
+        jtDNI.setForeground(new java.awt.Color(0, 0, 0));
+        jtDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtDNIActionPerformed(evt);
+            }
+        });
+
+        jtApellido.setEditable(false);
+        jtApellido.setBackground(new java.awt.Color(255, 255, 255));
+        jtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtApellidoActionPerformed(evt);
+            }
+        });
+
+        jtNombre.setEditable(false);
+        jtNombre.setBackground(new java.awt.Color(255, 255, 255));
+        jtNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtNombreActionPerformed(evt);
+            }
+        });
+
+        jtCiudad.setEditable(false);
+        jtCiudad.setBackground(new java.awt.Color(255, 255, 255));
+        jtCiudad.setForeground(new java.awt.Color(51, 51, 51));
+
+        jtDomicilio.setEditable(false);
+        jtDomicilio.setBackground(new java.awt.Color(255, 255, 255));
+        jtDomicilio.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Búsqueda Clientes");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(jLabel1))
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(199, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SalirBuscarCliente1)
-                .addGap(38, 38, 38))
+                        .addContainerGap()
+                        .addComponent(jlTelefono)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlDNI)
+                    .addComponent(jlDomicilio)
+                    .addComponent(jlCiudad)
+                    .addComponent(jlNombre)
+                    .addComponent(jLabel1)
+                    .addComponent(jlApellido))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                        .addComponent(SalirBuscarCliente1)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtDNI)
+                            .addComponent(jtCiudad)
+                            .addComponent(jtDomicilio)
+                            .addComponent(jtNombre)
+                            .addComponent(jtApellido))
+                        .addGap(21, 21, 21))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(SalirBuscarCliente1)
-                .addGap(27, 27, 27))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlDNI)
+                    .addComponent(jtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlTelefono)
+                    .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlApellido))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlNombre))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlCiudad))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlDomicilio))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addComponent(SalirBuscarCliente1)
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,12 +206,40 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtApellidoActionPerformed
+
+    private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtNombreActionPerformed
+
+    private void jtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtTelefonoActionPerformed
+
+    private void jtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDNIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtDNIActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SalirBuscarCliente1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel jlApellido;
+    private javax.swing.JLabel jlCiudad;
+    private javax.swing.JLabel jlDNI;
+    private javax.swing.JLabel jlDomicilio;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlTelefono;
+    private javax.swing.JTextField jtApellido;
+    private javax.swing.JTextField jtCiudad;
+    private javax.swing.JTextField jtDNI;
+    private javax.swing.JTextField jtDomicilio;
+    private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtTelefono;
+    private javax.swing.JTextPane jtpTelefono;
     // End of variables declaration//GEN-END:variables
 }
