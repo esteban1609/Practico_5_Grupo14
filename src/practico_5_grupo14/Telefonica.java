@@ -123,6 +123,7 @@ public class Telefonica extends javax.swing.JFrame {
 
     private void mItemAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAgregarAlumnoActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_mItemAgregarAlumnoActionPerformed
 
     private void mItemBuscarClienteApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBuscarClienteApellidoActionPerformed
