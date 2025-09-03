@@ -5,6 +5,7 @@
  */
 package practico_5_grupo14;
 
+import clases.Contacto;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -162,9 +163,14 @@ public class borrarCliente extends javax.swing.JFrame {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        int filaS=tablaClientes.getSelectedRow();
-        if(filaS!=-1){
-            modelo.removeRow(filaS);
+        int filaSele=tablaClientes.getSelectedRow();
+        if(filaSele!=-1){
+            long telefono = (Long) tablaClientes.getValueAt(filaSele, 5);
+            modelo.removeRow(filaSele);
+            Telefonica.d1.borrarContacto(telefono);
+            JOptionPane.showMessageDialog(this, "Cliente borrado");
+            txtDni.setText("");
+            
         }else{
             JOptionPane.showMessageDialog(this, "seleccione que cliente desea borrar");
         }

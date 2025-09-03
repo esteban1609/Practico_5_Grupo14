@@ -5,6 +5,7 @@
 package practico_5_grupo14;
 
 import clases.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,6 +13,7 @@ import clases.*;
  */
 public class Telefonica extends javax.swing.JFrame {
     public static DirectorioTelefonico d1 = new DirectorioTelefonico();
+    public static ArrayList<String> ciudades = new ArrayList();
     /**
      * Creates new form Telefonica
      */
