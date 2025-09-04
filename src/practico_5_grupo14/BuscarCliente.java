@@ -49,8 +49,10 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
+        jlTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jlTelefono.setText("Teléfono:");
 
+        jtpTelefono.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jtpTelefono);
 
         SalirBuscarCliente1.setText("Salir");
@@ -60,20 +62,26 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jtTelefono.setBackground(new java.awt.Color(255, 255, 255));
         jtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtTelefonoActionPerformed(evt);
             }
         });
 
+        jlApellido.setForeground(new java.awt.Color(0, 0, 0));
         jlApellido.setText("Apellido:");
 
+        jlNombre.setForeground(new java.awt.Color(0, 0, 0));
         jlNombre.setText("Nombre:");
 
+        jlDNI.setForeground(new java.awt.Color(0, 0, 0));
         jlDNI.setText("DNI:");
 
+        jlCiudad.setForeground(new java.awt.Color(0, 0, 0));
         jlCiudad.setText("Ciudad:");
 
+        jlDomicilio.setForeground(new java.awt.Color(0, 0, 0));
         jlDomicilio.setText("Domicilio:");
 
         jtDNI.setEditable(false);
@@ -107,6 +115,8 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         jtDomicilio.setEditable(false);
         jtDomicilio.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Búsqueda Clientes");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -114,15 +124,12 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jlTelefono)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jlTelefono)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jlDNI)
@@ -133,7 +140,7 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
                     .addComponent(jlApellido))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                         .addComponent(SalirBuscarCliente1)
                         .addGap(38, 38, 38))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -175,7 +182,7 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlDomicilio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(SalirBuscarCliente1)
                         .addGap(27, 27, 27))
                     .addGroup(jPanel1Layout.createSequentialGroup()
