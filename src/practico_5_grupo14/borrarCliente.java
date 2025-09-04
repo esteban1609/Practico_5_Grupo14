@@ -5,6 +5,7 @@
 package practico_5_grupo14;
 
 import clases.Contacto;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,27 +14,26 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Leandro Naranjo
  */
-public class BorrarCliente extends javax.swing.JInternalFrame {
+public class borrarCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form BorrarCliente1
      */
-    
-     private DefaultTableModel modelo = new DefaultTableModel() {
+    private DefaultTableModel modelo = new DefaultTableModel() {
 
         public boolean isCellEditable(int fila, int column) {
             return false;
         }
     };
     DefaultListModel modeloLista = new DefaultListModel();
-    
-    public BorrarCliente() {
+
+    public borrarCliente() {
         initComponents();
         armarCabecera();
         llenarListaDni();
     }
-    
-    private void armarCabecera(){
+
+    private void armarCabecera() {
         modelo.addColumn("DNI");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
@@ -42,14 +42,15 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
         modelo.addColumn("Telefono");
         tablaClientes.setModel(modelo);
     }
-    
-    private void llenarListaDni(){
-        for(Contacto c: Telefonica.d1.getCliente().values()){
+
+    private void llenarListaDni() {
+        for (Contacto c : Telefonica.d1.getCliente().values()) {
             int dni = c.getDni();
             modeloLista.addElement(dni);
         }
+        listDni.setModel(modeloLista);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,8 +82,16 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDniKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
+            }
         });
 
+        listDni.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listDniValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listDni);
 
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -176,16 +185,26 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
     private void txtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyReleased
         // TODO add your handling code here:
         try {
-            int dniEncontrado = Integer.parseInt(txtDni.getText());
+            String dniEncontrado = txtDni.getText().trim();
+            modeloLista.clear();
+            if (dniEncontrado.isEmpty()) {
+                return;
+            }
+
             for (Contacto c : Telefonica.d1.getCliente().values()) {
-                int dni = c.getDni();
-                if (dni == dniEncontrado) {
-                    modeloLista.addElement(dni);
-                } else {
-                    JOptionPane.showMessageDialog(this, "no existe nadie en esta lista con este dni");
+                String dniStr = String.valueOf(c.getDni());
+                
+                if (dniStr.startsWith(dniEncontrado)) {
+                    modeloLista.addElement(dniStr);
                 }
             }
-        }catch(NumberFormatException e){
+
+            // Si no encontró nada
+            if (modeloLista.isEmpty()) {
+                modeloLista.addElement("No se encontraron coincidencias");
+            }
+
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "este campo solo acepta numeros");
         }
 
@@ -195,21 +214,44 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int filaSele = tablaClientes.getSelectedRow();
         if (filaSele != -1) {
-            long telefono = (Long) tablaClientes.getValueAt(filaSele, 5);
+            ArrayList<Long> telefono = (ArrayList<Long>) tablaClientes.getValueAt(filaSele, 5);
             modelo.removeRow(filaSele);
-            Telefonica.d1.borrarContacto(telefono);
+            Telefonica.d1.borrarContacto(telefono.get(0));
             JOptionPane.showMessageDialog(this, "Cliente borrado");
             txtDni.setText("");
 
         } else {
             JOptionPane.showMessageDialog(this, "seleccione que cliente desea borrar");
         }
+
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDniKeyTyped
+
+    private void listDniValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listDniValueChanged
+        // TODO add your handling code here:
+        for (Contacto c : Telefonica.d1.getCliente().values()) {
+            if(listDni.getSelectedValue()==c.getDni()){
+                modelo.setRowCount(0);
+                 modelo.addRow(new Object[]{
+                    c.getDni(),
+                    c.getApellido(),
+                    c.getNombre(),
+                    c.getDireccion(),
+                    c.getCiudad(),
+                    Telefonica.d1.buscarTelefono(c.getApellido())
+                });
+                break;
+            }
+        }
+    }//GEN-LAST:event_listDniValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,4 +265,6 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtDni;
     // End of variables declaration//GEN-END:variables
+   
 }
+
