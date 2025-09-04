@@ -6,6 +6,7 @@ package practico_5_grupo14;
 
 import clases.Contacto;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -212,18 +213,18 @@ public class borrarCliente extends javax.swing.JInternalFrame {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
+        for (Map.Entry<Long, Contacto> entry : Telefonica.d1.getCliente().entrySet()) {
         int filaSele = tablaClientes.getSelectedRow();
         if (filaSele != -1) {
-            ArrayList<Long> telefono = (ArrayList<Long>) tablaClientes.getValueAt(filaSele, 5);
+            Telefonica.d1.getCliente().remove(entry.getKey());
             modelo.removeRow(filaSele);
-            Telefonica.d1.borrarContacto(telefono.get(0));
             JOptionPane.showMessageDialog(this, "Cliente borrado");
             txtDni.setText("");
 
         } else {
             JOptionPane.showMessageDialog(this, "seleccione que cliente desea borrar");
         }
-
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

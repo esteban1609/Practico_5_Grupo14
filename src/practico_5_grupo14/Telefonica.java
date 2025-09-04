@@ -237,7 +237,7 @@ public class Telefonica extends javax.swing.JFrame {
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        BorrarCliente bc = new BorrarCliente();
+        borrarCliente bc = new borrarCliente();
         bc.setLocation((escritorio.getWidth() - bc.getWidth()) / 2, (escritorio.getHeight() - bc.getHeight()) / 2);
 
         bc.setVisible(true);
