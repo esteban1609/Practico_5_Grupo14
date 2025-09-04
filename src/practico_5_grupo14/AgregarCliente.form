@@ -92,7 +92,7 @@
                       <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtDomicilio" alignment="0" max="32767" attributes="0"/>
-                      <Component id="comboCiudad" pref="117" max="32767" attributes="0"/>
+                      <Component id="jcbCiudad" pref="117" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -118,7 +118,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="comboCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcbCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -163,10 +163,15 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDomicilio">
         </Component>
-        <Component class="javax.swing.JComboBox" name="comboCiudad">
+        <Component class="javax.swing.JComboBox" name="jcbCiudad">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
             </Property>
           </Properties>
           <AuxValues>
@@ -224,9 +229,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
