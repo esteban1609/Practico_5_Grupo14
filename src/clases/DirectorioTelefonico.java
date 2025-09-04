@@ -13,7 +13,7 @@ import java.util.TreeMap;
 
 /**
  *
- * @author Leandro Naranjo
+ * @author Candela Naranjo
  */
 public class DirectorioTelefonico {
     
@@ -61,14 +61,14 @@ de teléfono asociados a dicho apellido. */
     }
     /*D. buscarContactos() que en base a una ciudad nos devuelve un ArrayList con los
 Contactos asociados a dicha ciudad.*/
-    public List buscarContactos(String ciudad){
-        ArrayList ciu=new ArrayList<>();
+    public ArrayList<Contacto> buscarContactos(String ciudad){
+        ArrayList<Contacto> contactCiudad =new ArrayList<>();
         for (Map.Entry<Long, Contacto> entry : cliente.entrySet()) {
             if (entry.getValue().getCiudad().equalsIgnoreCase(ciudad)) {
-                ciu.add(entry.getKey());
+                contactCiudad.add(entry.getValue());
             }
         }
-        return ciu;
+        return contactCiudad;
     }
     /*E. borrarContacto() que en base al número de teléfono elimina el contacto del directorio.*/
     public void borrarContacto(Long telefono){

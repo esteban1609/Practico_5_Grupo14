@@ -10,11 +10,12 @@ package clases;
  * @author X Assat
  */
 public class Contacto {
-   private int dni;
-   private String nombre;
-   private String apellido;
-   private String ciudad; 
-   private String direccion;
+
+    private int dni;
+    private String nombre;
+    private String apellido;
+    private String ciudad;
+    private String direccion;
 
     public Contacto(int dni, String nombre, String apellido, String ciudad, String direccion) {
         this.dni = dni;
@@ -25,6 +26,11 @@ public class Contacto {
     }
 
     public Contacto() {
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido + " (DNI: " + dni + ") - " + ciudad;
     }
 
     public int getDni() {
@@ -66,6 +72,5 @@ public class Contacto {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-   
-   
+
 }

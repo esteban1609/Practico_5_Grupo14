@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author X
  */
-public class agregarCliente extends javax.swing.JInternalFrame {
+public class AgregarCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AgregarContacto
      */
-    public agregarCliente() {
+    public AgregarCliente() {
         initComponents();
     }
 
@@ -140,6 +140,11 @@ public class agregarCliente extends javax.swing.JInternalFrame {
         });
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,6 +199,11 @@ public class agregarCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Tiene que colocar Numeros en vez de letras en el campo", "Error de tipeo", JOptionPane.ERROR);
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

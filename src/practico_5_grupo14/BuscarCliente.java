@@ -6,7 +6,7 @@ package practico_5_grupo14;
 
 /**
  *
- * @author Leandro Naranjo
+ * @author Candela Naranjo
  */
 public class BuscarCliente extends javax.swing.JInternalFrame {
 
@@ -49,41 +49,35 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jlTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jlTelefono.setText("Teléfono:");
 
-        jtpTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        jtpTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jtpTelefono);
 
         SalirBuscarCliente1.setText("Salir");
+        SalirBuscarCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirBuscarCliente1ActionPerformed(evt);
+            }
+        });
 
-        jtTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        jtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtTelefonoActionPerformed(evt);
             }
         });
 
-        jlApellido.setForeground(new java.awt.Color(0, 0, 0));
         jlApellido.setText("Apellido:");
 
-        jlNombre.setForeground(new java.awt.Color(0, 0, 0));
         jlNombre.setText("Nombre:");
 
-        jlDNI.setForeground(new java.awt.Color(0, 0, 0));
         jlDNI.setText("DNI:");
 
-        jlCiudad.setForeground(new java.awt.Color(0, 0, 0));
         jlCiudad.setText("Ciudad:");
 
-        jlDomicilio.setForeground(new java.awt.Color(0, 0, 0));
         jlDomicilio.setText("Domicilio:");
 
         jtDNI.setEditable(false);
         jtDNI.setBackground(new java.awt.Color(255, 255, 255));
-        jtDNI.setForeground(new java.awt.Color(0, 0, 0));
         jtDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtDNIActionPerformed(evt);
@@ -100,7 +94,6 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
 
         jtNombre.setEditable(false);
         jtNombre.setBackground(new java.awt.Color(255, 255, 255));
-        jtNombre.setForeground(new java.awt.Color(0, 0, 0));
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNombreActionPerformed(evt);
@@ -113,9 +106,7 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
 
         jtDomicilio.setEditable(false);
         jtDomicilio.setBackground(new java.awt.Color(255, 255, 255));
-        jtDomicilio.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Búsqueda Clientes");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -221,6 +212,11 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
     private void jtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDNIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtDNIActionPerformed
+
+    private void SalirBuscarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirBuscarCliente1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_SalirBuscarCliente1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

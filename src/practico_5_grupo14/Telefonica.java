@@ -12,14 +12,67 @@ import java.util.ArrayList;
  * @author Leandro Naranjo
  */
 public class Telefonica extends javax.swing.JFrame {
+
     public static DirectorioTelefonico d1 = new DirectorioTelefonico();
     public static ArrayList<String> ciudades = new ArrayList();
+
     /**
      * Creates new form Telefonica
      */
     public Telefonica() {
         initComponents();
-        
+        initCiudades();
+        cargaDatos();
+
+    }
+
+    public void initCiudades() {
+        ciudades.add("San Luis");
+        ciudades.add("Córdoba");
+        ciudades.add("Mendoza");
+        ciudades.add("Rosario");
+        ciudades.add("Santa Fe");
+    }
+
+    public void cargaDatos() {
+        //Agregar Contactos A)
+        Contacto c1 = new Contacto(45563392, "Candela", "Naranjo", "San Luis", "Caseros 1213");
+        d1.agregarContacto(2664863827L, c1);
+
+        Contacto c2 = new Contacto(25811214, "Maria", "Sosa", "San Luis", "Corrientes 12");
+        d1.agregarContacto(2664320797L, c2);
+
+        Contacto c3 = new Contacto(45968325, "Lucas", "Quevedo", "Cordoba", "San Martin 1234");
+        d1.agregarContacto(2647856974L, c3);
+
+        Contacto c4 = new Contacto(26985741, "Laura", "Diaz", "Mendoza", "Constitucion 191");
+        d1.agregarContacto(2657987541L, c4);
+
+        //Buscar Contacto por telefono B)
+        Contacto contactoEncontrado = d1.buscarContacto(2664863827L);
+        if (contactoEncontrado != null) {
+            System.out.println("Contacto encontrado: " + contactoEncontrado.getNombre() + " "
+                    + contactoEncontrado.getApellido() + " - " + contactoEncontrado.getCiudad());
+        } else {
+            System.out.println("Contacto no encontrado");
+        }
+
+        /*Esta parte no funciona si los metodos no estan en funcionamiento
+        //Buscar Contacto por Apellido C)
+        Set<Long> telefonosPerez = d1.buscarTelefono("Perez");
+        System.out.println("Teléfonos encontrados: " + telefonosPerez);
+
+        //Buscar Contacto por Ciudad D)
+        ArrayList<Contacto> contactosSanLuis = d1.buscarContactos("San Luis");
+        System.out.println("Contactos en Córdoba: " + contactosSanLuis.size());
+        for (Object contacto : contactosSanLuis) {
+            System.out.println("Contacto: " + contacto.toString());
+        }
+
+        //Borrar Contacto E)
+        d1.borrarContacto(2664320797L);
+        System.out.println("Contacto borrado. Verificando...");
+         */
     }
 
     /**
@@ -41,7 +94,7 @@ public class Telefonica extends javax.swing.JFrame {
         mItemBuscarClienteCiudad = new javax.swing.JMenuItem();
         mItemBuscarClienteApellido = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btnAgregarCiudad = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,13 +161,18 @@ public class Telefonica extends javax.swing.JFrame {
 
         jMenu3.setText("Ciudades");
 
-        jMenuItem1.setText("Agregar Ciudad");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+        btnAgregarCiudad.setText("Agregar Ciudad");
+        btnAgregarCiudad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarCiudadMouseClicked(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        btnAgregarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarCiudadActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnAgregarCiudad);
 
         jMenuBar1.add(jMenu3);
 
@@ -135,50 +193,65 @@ public class Telefonica extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void mItemAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAgregarClienteActionPerformed
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        agregarCliente ac = new agregarCliente();
+        AgregarCliente ac = new AgregarCliente();
+        ac.setLocation((escritorio.getWidth() - ac.getWidth()) / 2, (escritorio.getHeight() - ac.getHeight()) / 2);
         ac.setVisible(true);
         escritorio.add(ac);
         ac.toFront();
-        
-       
+
+
     }//GEN-LAST:event_mItemAgregarClienteActionPerformed
 
     private void mItemBuscarClienteApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBuscarClienteApellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mItemBuscarClienteApellidoActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void btnAgregarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCiudadActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        AgregarCiudades aggC = new AgregarCiudades();
+        aggC.setLocation((escritorio.getWidth() - aggC.getWidth()) / 2, (escritorio.getHeight() - aggC.getHeight()) / 2);
+        aggC.setVisible(true);
+        escritorio.add(aggC);
+        aggC.toFront();
+    }//GEN-LAST:event_btnAgregarCiudadActionPerformed
 
     private void mItemBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBorrarClienteActionPerformed
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        borrarCliente bc = new borrarCliente();
+        BorrarCliente bc = new BorrarCliente();
+        bc.setLocation((escritorio.getWidth() - bc.getWidth()) / 2, (escritorio.getHeight() - bc.getHeight()) / 2);
+
         bc.setVisible(true);
         escritorio.add(bc);
         bc.toFront();
-        
+
     }//GEN-LAST:event_mItemBorrarClienteActionPerformed
 
     private void mItemAgregarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemAgregarClienteMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_mItemAgregarClienteMouseClicked
 
     private void mItemBorrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemBorrarClienteMouseClicked
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_mItemBorrarClienteMouseClicked
+
+    private void btnAgregarCiudadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarCiudadMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnAgregarCiudadMouseClicked
 
     /**
      * @param args the command line arguments
@@ -206,25 +279,25 @@ public class Telefonica extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Telefonica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Telefonica().setVisible(true);
             }
         });
-    
+
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnAgregarCiudad;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem mItemAgregarCliente;
     private javax.swing.JMenuItem mItemBorrarCliente;
     private javax.swing.JMenuItem mItemBuscarCliente;
