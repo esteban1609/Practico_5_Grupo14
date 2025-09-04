@@ -186,6 +186,7 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
+        System.out.println("cande nala");
         try{
         int dn= Integer.parseInt(txtDni.getText());
         String nom=txtNombre.getText();
@@ -199,7 +200,9 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Tiene que colocar Numeros en vez de letras en el campo", "Error de tipeo", JOptionPane.ERROR);
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(this, "No puede haber un casillero vacio", "Error de tipeo", JOptionPane.ERROR);
-        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Fallo al ingresar datos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
           
     }//GEN-LAST:event_jbGuardarActionPerformed
 
