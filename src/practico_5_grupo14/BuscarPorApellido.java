@@ -4,17 +4,147 @@
  */
 package practico_5_grupo14;
 
+import clases.Contacto;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author Leandro Naranjo
+ * @author Candela Naranjo
  */
 public class BuscarPorApellido extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form BuscarPorApellido
      */
+    private DefaultTableModel tabla;
+    private DefaultListModel<String> lista;
+    private Set<String> todoslosApellidos;
+
     public BuscarPorApellido() {
         initComponents();
+        initTabla();
+        cargarTodosLosApellidos();
+        filtrarListaApellidos();
+    }
+
+    private void initTabla() {
+        tabla = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        tabla.addColumn("DNI");
+        tabla.addColumn("Nombre");
+        tabla.addColumn("Apellido");
+        tabla.addColumn("Dirección");
+        tabla.addColumn("Teléfono");
+
+        tablaBuscarApellido.setModel(tabla);
+
+        lista = new DefaultListModel<>();
+        listaApellidos.setModel(lista);
+        
+        //  filtro
+        textApelidos.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                filtrarListaApellidos();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                filtrarListaApellidos();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                filtrarListaApellidos();
+            }
+        });
+
+        // seleccion en lista
+        listaApellidos.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String apellidoSeleccionado = listaApellidos.getSelectedValue();
+                if (apellidoSeleccionado != null) {
+                    mostrarContactosPorApellido(apellidoSeleccionado);
+                }
+            }
+        });
+    }
+
+    
+    //cargar todos los apellidos unicos
+    
+    private void cargarTodosLosApellidos() {
+        todoslosApellidos = new TreeSet<>();
+
+        if (Telefonica.d1.getCliente().isEmpty()) {
+            return;
+        }
+
+        for (Contacto contacto : Telefonica.d1.getCliente().values()) {
+            todoslosApellidos.add(contacto.getApellido());
+        }
+    }
+
+    
+     //filtrar lista de apellidos segun texto ingresado
+    private void filtrarListaApellidos() {
+        String filtro = textApelidos.getText().trim().toLowerCase();
+        lista.clear();
+
+        if (todoslosApellidos.isEmpty()) {
+            lista.addElement("No hay contactos");
+            return;
+        }
+
+        if (filtro.isEmpty()) {
+            // mostrar todos los apellidos si no hay filtro
+            for (String apellido : todoslosApellidos) {
+                lista.addElement(apellido);
+            }
+        } else {
+            // filtrar apellidos que coincidan
+            for (String apellido : todoslosApellidos) {
+                if (apellido.toLowerCase().contains(filtro)) {
+                    lista.addElement(apellido);
+                }
+            }
+
+            if (lista.isEmpty()) {
+                lista.addElement("No se encontraron apellidos");
+            }
+        }
+    }
+  
+    //mostrar contactos del apellido seleccionado   
+    private void mostrarContactosPorApellido(String apellido) {
+        tabla.setRowCount(0);
+
+        int contador = 0;
+
+        for (Map.Entry<Long, Contacto> entry : Telefonica.d1.getCliente().entrySet()) {
+            Contacto contacto = entry.getValue();
+            if (contacto.getApellido().equals(apellido)) {
+                tabla.addRow(new Object[]{
+                    contacto.getDni(),
+                    contacto.getNombre(),
+                    contacto.getApellido(),
+                    contacto.getCiudad(),
+                    entry.getKey()
+                });
+                contador++;
+            }
+        }
+
+       
     }
 
     /**
@@ -29,11 +159,11 @@ public class BuscarPorApellido extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        textApelidos = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaBuscarApellido = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        listaApellidos = new javax.swing.JList<>();
         btnSalirBuscarPorApellido = new javax.swing.JButton();
 
         setTitle("Buscar por Apellido");
@@ -45,9 +175,9 @@ public class BuscarPorApellido extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Apellido:");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(textApelidos);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaBuscarApellido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -58,11 +188,16 @@ public class BuscarPorApellido extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tablaBuscarApellido);
 
-        jScrollPane4.setViewportView(jList2);
+        jScrollPane4.setViewportView(listaApellidos);
 
         btnSalirBuscarPorApellido.setText("Salir");
+        btnSalirBuscarPorApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirBuscarPorApellidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,16 +242,21 @@ public class BuscarPorApellido extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalirBuscarPorApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirBuscarPorApellidoActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnSalirBuscarPorApellidoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalirBuscarPorApellido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JList<String> listaApellidos;
+    private javax.swing.JTable tablaBuscarApellido;
+    private javax.swing.JTextPane textApelidos;
     // End of variables declaration//GEN-END:variables
 }

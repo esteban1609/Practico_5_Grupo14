@@ -103,10 +103,7 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
                     entry.getKey() 
                 });
             }
-        }
-
-       
-        int cantidad = modelo.getRowCount();
+        }     
     }
 
     /**
