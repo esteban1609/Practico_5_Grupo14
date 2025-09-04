@@ -197,7 +197,10 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
         Telefonica.d1.agregarContacto(tel, contac);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Tiene que colocar Numeros en vez de letras en el campo", "Error de tipeo", JOptionPane.ERROR);
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(this, "No puede haber un casillero vacio", "Error de tipeo", JOptionPane.ERROR);
         }
+          
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed

@@ -98,7 +98,6 @@ public class Telefonica extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 600));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -147,6 +146,16 @@ public class Telefonica extends javax.swing.JFrame {
         jMenu2.setText("Directorio");
 
         mItemBuscarClienteCiudad.setText("Buscar Clientes por Ciudad");
+        mItemBuscarClienteCiudad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mItemBuscarClienteCiudadMouseClicked(evt);
+            }
+        });
+        mItemBuscarClienteCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemBuscarClienteCiudadActionPerformed(evt);
+            }
+        });
         jMenu2.add(mItemBuscarClienteCiudad);
 
         mItemBuscarClienteApellido.setText("Buscar Telefono por Apellido");
@@ -252,6 +261,22 @@ public class Telefonica extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnAgregarCiudadMouseClicked
+
+    private void mItemBuscarClienteCiudadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mItemBuscarClienteCiudadMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_mItemBuscarClienteCiudadMouseClicked
+
+    private void mItemBuscarClienteCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBuscarClienteCiudadActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        BuscarPorCiudad busqueda=new BuscarPorCiudad();
+        busqueda.setLocation((escritorio.getWidth() - busqueda.getWidth()) / 2, (escritorio.getHeight() - busqueda.getHeight()) / 2);
+        busqueda.setVisible(true);
+        escritorio.add(busqueda);
+        busqueda.toFront();
+    }//GEN-LAST:event_mItemBuscarClienteCiudadActionPerformed
 
     /**
      * @param args the command line arguments
