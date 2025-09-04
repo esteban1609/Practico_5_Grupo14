@@ -220,6 +220,13 @@ public class Telefonica extends javax.swing.JFrame {
 
     private void mItemBuscarClienteApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBuscarClienteApellidoActionPerformed
         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        BuscarPorApellido busqueda=new BuscarPorApellido();
+        busqueda.setLocation((escritorio.getWidth() - busqueda.getWidth()) / 2, (escritorio.getHeight() - busqueda.getHeight()) / 2);
+        busqueda.setVisible(true);
+        escritorio.add(busqueda);
+        busqueda.toFront();
     }//GEN-LAST:event_mItemBuscarClienteApellidoActionPerformed
 
     private void btnAgregarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCiudadActionPerformed
