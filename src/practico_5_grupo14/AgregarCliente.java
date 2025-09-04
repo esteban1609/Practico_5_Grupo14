@@ -6,6 +6,7 @@
 package practico_5_grupo14;
 
 import clases.Contacto;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,20 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
      */
     public AgregarCliente() {
         initComponents();
+        cargaBoxCiudades();
+    }
+    
+    private void cargaBoxCiudades(){
+        DefaultComboBoxModel<String> ciudades = new DefaultComboBoxModel<>();
+        ciudades.addElement("Seleccionar una ciudad");
+        if(Telefonica.ciudades.isEmpty()){
+            ciudades.addElement("No hay ciudades cargadas");
+        }else{
+            for(String c : Telefonica.ciudades){
+                ciudades.addElement(c);
+            }
+        }
+        comboCiudad.setModel(ciudades);
     }
 
     /**
@@ -41,7 +56,7 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtDomicilio = new javax.swing.JTextField();
-        jcbCiudad = new javax.swing.JComboBox<>();
+        comboCiudad = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
@@ -63,8 +78,6 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Domicilio:");
 
-        jcbCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,7 +95,7 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
                     .addComponent(txtNombre)
                     .addComponent(txtApellido)
                     .addComponent(txtDomicilio)
-                    .addComponent(jcbCiudad, 0, 117, Short.MAX_VALUE))
+                    .addComponent(comboCiudad, 0, 117, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,7 +115,7 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jcbCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -191,7 +204,7 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
         int dn= Integer.parseInt(txtDni.getText());
         String nom=txtNombre.getText();
         String ape=txtApellido.getText();
-        String ciu=jcbCiudad.getSelectedItem().toString();
+        String ciu=comboCiudad.getSelectedItem().toString();
         String dom=txtDomicilio.getText();
         Long tel=Long.parseLong(txtTelefono.getText());
         Contacto contac=new Contacto(dn, nom, ape, ciu, dom);
@@ -213,6 +226,7 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboCiudad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -224,7 +238,6 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<String> jcbCiudad;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtDomicilio;

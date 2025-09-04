@@ -4,6 +4,8 @@
  */
 package practico_5_grupo14;
 
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Leandro Naranjo
@@ -15,8 +17,21 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
      */
     public BuscarPorCiudad() {
         initComponents();
+        cargaBoxCiudades();
     }
 
+    private void cargaBoxCiudades(){
+        DefaultComboBoxModel<String> ciudades = new DefaultComboBoxModel<>();
+        ciudades.addElement("Seleccionar una ciudad");
+        if(Telefonica.ciudades.isEmpty()){
+            ciudades.addElement("No hay ciudades cargadas");
+        }else{
+            for(String c : Telefonica.ciudades){
+                ciudades.addElement(c);
+            }
+        }
+        comboCiudad.setModel(ciudades);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +71,11 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
         jLabel2.setText("Ciudades:");
 
         btnSalirBuscarPorCiudad.setText("Salir");
+        btnSalirBuscarPorCiudad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalirBuscarPorCiudadMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,6 +117,11 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirBuscarPorCiudadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirBuscarPorCiudadMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnSalirBuscarPorCiudadMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
