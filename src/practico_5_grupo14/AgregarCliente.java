@@ -210,9 +210,9 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
         Contacto contac=new Contacto(dn, nom, ape, ciu, dom);
         Telefonica.d1.agregarContacto(tel, contac);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Tiene que colocar Numeros en vez de letras en el campo", "Error de tipeo", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(this, "Tiene que colocar Numeros en vez de letras en el campo", "Error de tipeo", JOptionPane.ERROR_MESSAGE);
         }catch(NullPointerException e){
-            JOptionPane.showMessageDialog(this, "No puede haber un casillero vacio", "Error de tipeo", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(this, "No puede haber un casillero vacio", "Error de tipeo", JOptionPane.ERROR_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Fallo al ingresar datos", "Error", JOptionPane.ERROR_MESSAGE);
             }
