@@ -4,7 +4,11 @@
  */
 package practico_5_grupo14;
 
+import clases.Contacto;
+import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,23 +19,96 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
     /**
      * Creates new form BuscarPorCiudad
      */
+    private DefaultTableModel modelo;
+
     public BuscarPorCiudad() {
         initComponents();
         cargaBoxCiudades();
+        initTabla();
     }
 
-    private void cargaBoxCiudades(){
+    private void initTabla() {
+        modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        modelo.addColumn("DNI");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Dirección");
+        modelo.addColumn("Teléfono");
+
+        tablaBuscarCiudades.setModel(modelo);
+    }
+
+    private void cargaBoxCiudades() {
         DefaultComboBoxModel<String> ciudades = new DefaultComboBoxModel<>();
         ciudades.addElement("Seleccionar una ciudad");
-        if(Telefonica.ciudades.isEmpty()){
+        if (Telefonica.ciudades.isEmpty()) {
             ciudades.addElement("No hay ciudades cargadas");
-        }else{
-            for(String c : Telefonica.ciudades){
+        } else {
+            for (String c : Telefonica.ciudades) {
                 ciudades.addElement(c);
+
             }
         }
         comboCiudad.setModel(ciudades);
+
+        comboCiudad.addItemListener(new java.awt.event.ItemListener() {
+            @Override
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCiudadItemStateChanged(evt);
+            }
+        });
     }
+
+    private void comboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {
+        // solo procesar cuando el item es seleccionado (no deseleccionado)
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            String ciudadSeleccionada = (String) evt.getItem();
+
+            // validar que sea una ciudad valida
+            if (ciudadSeleccionada != null
+                    && !ciudadSeleccionada.equals("Seleccionar una ciudad")
+                    && !ciudadSeleccionada.equals("No hay ciudades cargadas")) {
+
+                // cargar la tabla con los contactos de la ciudad seleccionada
+                cargarTablaContactos(ciudadSeleccionada);
+            } else {
+                // limpiar la tabla si se selecciona un placeholder
+                modelo.setRowCount(0);
+            }
+        }
+    }
+
+    private void cargarTablaContactos(String ciudad) {
+        // limpiar la tabla antes de cargar nuevos datos
+        modelo.setRowCount(0);
+
+        // recorrer todos los contactos del directorio
+        for (Map.Entry<Long, Contacto> entry : Telefonica.d1.getCliente().entrySet()) {
+            Contacto contacto = entry.getValue();
+
+            // verificar si el contacto pertenece a la ciudad seleccionada
+            if (contacto.getCiudad().equalsIgnoreCase(ciudad)) {
+                // Usar model.addRow según la consigna
+                modelo.addRow(new Object[]{
+                    contacto.getDni(),
+                    contacto.getNombre(),
+                    contacto.getApellido(),
+                    contacto.getDireccion(),
+                    entry.getKey() 
+                });
+            }
+        }
+
+       
+        int cantidad = modelo.getRowCount();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +121,7 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         comboCiudad = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaBuscarCiudades = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnSalirBuscarPorCiudad = new javax.swing.JButton();
 
@@ -54,7 +131,7 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
         jLabel1.setText("Buscar Clientes por Ciudad");
         jLabel1.setToolTipText("");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaBuscarCiudades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,7 +142,7 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaBuscarCiudades);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Ciudades:");
@@ -130,6 +207,6 @@ public class BuscarPorCiudad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaBuscarCiudades;
     // End of variables declaration//GEN-END:variables
 }
