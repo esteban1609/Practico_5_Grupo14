@@ -216,7 +216,11 @@ public class agregarCliente extends javax.swing.JInternalFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Fallo al ingresar datos", "Error", JOptionPane.ERROR_MESSAGE);
             }
-          
+         txtDni.setText("");
+         txtNombre.setText("");
+         txtApellido.setText("");
+         txtDomicilio.setText("");
+         txtTelefono.setText("");
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
