@@ -208,6 +208,7 @@ public class agregarCliente extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+
             String ciu = comboCiudad.getSelectedItem().toString();
             if (ciu.equals("Seleccionar una ciudad") || ciu.equals("No hay ciudades cargadas")) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar una ciudad valida", "Error", JOptionPane.ERROR_MESSAGE);
