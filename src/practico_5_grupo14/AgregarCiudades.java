@@ -41,6 +41,7 @@ public class AgregarCiudades extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nombre Ciudad");
 
+        btnGuardarCiudad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/disquete.png"))); // NOI18N
         btnGuardarCiudad.setText("Guardar");
         btnGuardarCiudad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -53,6 +54,7 @@ public class AgregarCiudades extends javax.swing.JInternalFrame {
             }
         });
 
+        btnSalirAggCiudad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/close.png"))); // NOI18N
         btnSalirAggCiudad.setText("Salir");
         btnSalirAggCiudad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,7 +97,7 @@ public class AgregarCiudades extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarCiudad)
                     .addComponent(btnSalirAggCiudad))
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         pack();
