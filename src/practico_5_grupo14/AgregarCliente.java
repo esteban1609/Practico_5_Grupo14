@@ -22,14 +22,14 @@ public class agregarCliente extends javax.swing.JInternalFrame {
         initComponents();
         cargaBoxCiudades();
     }
-    
-    private void cargaBoxCiudades(){
+
+    private void cargaBoxCiudades() {
         DefaultComboBoxModel<String> ciudades = new DefaultComboBoxModel<>();
         ciudades.addElement("Seleccionar una ciudad");
-        if(Telefonica.ciudades.isEmpty()){
+        if (Telefonica.ciudades.isEmpty()) {
             ciudades.addElement("No hay ciudades cargadas");
-        }else{
-            for(String c : Telefonica.ciudades){
+        } else {
+            for (String c : Telefonica.ciudades) {
                 ciudades.addElement(c);
             }
         }
@@ -199,24 +199,54 @@ public class agregarCliente extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-        System.out.println("cande nala");
-        try{
-        int dn= Integer.parseInt(txtDni.getText());
-        String nom=txtNombre.getText();
-        String ape=txtApellido.getText();
-        String ciu=comboCiudad.getSelectedItem().toString();
-        String dom=txtDomicilio.getText();
-        Long tel=Long.parseLong(txtTelefono.getText());
-        Contacto contac=new Contacto(dn, nom, ape, ciu, dom);
-        Telefonica.d1.agregarContacto(tel, contac);
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Tiene que colocar Numeros en vez de letras en el campo", "Error de tipeo", JOptionPane.ERROR_MESSAGE);
-        }catch(NullPointerException e){
-            JOptionPane.showMessageDialog(this, "No puede haber un casillero vacio", "Error de tipeo", JOptionPane.ERROR_MESSAGE);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Fallo al ingresar datos", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (txtDni.getText().trim().isEmpty()
+                    || txtNombre.getText().trim().isEmpty()
+                    || txtApellido.getText().trim().isEmpty()
+                    || txtDomicilio.getText().trim().isEmpty()
+                    || txtTelefono.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-          
+            String ciu = comboCiudad.getSelectedItem().toString();
+            if (ciu.equals("Seleccionar una ciudad") || ciu.equals("No hay ciudades cargadas")) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar una ciudad valida", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int dn = Integer.parseInt(txtDni.getText());
+            String nom = txtNombre.getText();
+            String ape = txtApellido.getText();
+            String dom = txtDomicilio.getText();
+            Long tel = Long.parseLong(txtTelefono.getText());
+
+            if (Telefonica.d1.getCliente().containsKey(tel)) {
+                JOptionPane.showMessageDialog(this, "El telefono ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Contacto contac = new Contacto(dn, nom, ape, ciu, dom);
+            Telefonica.d1.agregarContacto(tel, contac);
+            
+            JOptionPane.showMessageDialog(this, "Contacto agregado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+            //limpiar
+            txtDni.setText("");
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtDomicilio.setText("");
+            txtTelefono.setText("");
+            comboCiudad.setSelectedIndex(0);
+            txtDni.requestFocus();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Tiene que colocar Numeros en vez de letras en el campo", "Error de tipeo", JOptionPane.ERROR_MESSAGE);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "No puede haber un casillero vacio", "Error de tipeo", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Fallo al ingresar datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed

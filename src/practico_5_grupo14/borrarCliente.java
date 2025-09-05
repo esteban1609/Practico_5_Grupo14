@@ -230,19 +230,19 @@ public class borrarCliente extends javax.swing.JInternalFrame {
         }
 
         if (telefono == null) {
-            JOptionPane.showMessageDialog(this, "no se encontró el cliente en la agenda.");
+            JOptionPane.showMessageDialog(this, "No se encontro el cliente en la agenda.");
             return;
         }
 
-        int res = JOptionPane.showConfirmDialog(this, "¿seguro que quiere eliminar este cliente?", "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int res = JOptionPane.showConfirmDialog(this, "¿Seguro que quiere eliminar este cliente?", "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (res == JOptionPane.YES_OPTION) {
             Telefonica.d1.borrarContacto(telefono);
             modeloLista.removeElement(dniSeleccionado);
             modelo.setRowCount(0);
-            JOptionPane.showMessageDialog(this, "cliente eliminado");
+            JOptionPane.showMessageDialog(this, "Cliente eliminado");
         } else {
-            JOptionPane.showMessageDialog(this, "el cliente no se eliminó");
+            JOptionPane.showMessageDialog(this, "El cliente no se elimino");
         }
 
     }//GEN-LAST:event_btnBorrarActionPerformed
