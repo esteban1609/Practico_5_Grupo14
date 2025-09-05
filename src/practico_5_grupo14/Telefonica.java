@@ -214,7 +214,7 @@ public class Telefonica extends javax.swing.JFrame {
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        AgregarCliente ac = new AgregarCliente();
+        agregarCliente ac = new agregarCliente();
         ac.setLocation((escritorio.getWidth() - ac.getWidth()) / 2, (escritorio.getHeight() - ac.getHeight()) / 2);
         ac.setVisible(true);
         escritorio.add(ac);
