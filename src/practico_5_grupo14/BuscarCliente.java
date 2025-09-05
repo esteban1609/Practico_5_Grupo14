@@ -4,9 +4,14 @@
  */
 package practico_5_grupo14;
 
+import clases.Contacto;
+import java.util.Map;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Candela Naranjo
+ * @author Esteban Barroso
  */
 public class BuscarCliente extends javax.swing.JInternalFrame {
 
@@ -15,6 +20,20 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
      */
     public BuscarCliente() {
         initComponents();
+        llenarLista();
+        
+    }
+    private DefaultListModel modeloLista= new DefaultListModel();
+    
+    private void llenarLista(){
+        modeloLista.clear();
+        if(Telefonica.d1==null || Telefonica.d1.getCliente()==null) return;
+        for (Map.Entry<Long, Contacto> en : Telefonica.d1.getCliente().entrySet()) {
+            Long telefono = en.getKey();
+            modeloLista.addElement(telefono);
+            
+        }
+        jlistTelefono.setModel(modeloLista);
     }
 
     /**
@@ -28,8 +47,6 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jlTelefono = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtpTelefono = new javax.swing.JTextPane();
         SalirBuscarCliente1 = new javax.swing.JButton();
         jtTelefono = new javax.swing.JTextField();
         jlApellido = new javax.swing.JLabel();
@@ -43,17 +60,21 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         jtCiudad = new javax.swing.JTextField();
         jtDomicilio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jlistTelefono = new javax.swing.JList<>();
 
         setTitle("Buscar Clientes");
         setToolTipText("");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel1KeyTyped(evt);
+            }
+        });
 
         jlTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jlTelefono.setText("Teléfono:");
-
-        jtpTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jtpTelefono);
 
         SalirBuscarCliente1.setText("Salir");
         SalirBuscarCliente1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +87,11 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         jtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtTelefonoActionPerformed(evt);
+            }
+        });
+        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtTelefonoKeyReleased(evt);
             }
         });
 
@@ -119,6 +145,14 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Búsqueda Clientes");
 
+        jlistTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        jlistTelefono.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jlistTelefonoValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jlistTelefono);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,9 +162,9 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
                 .addComponent(jlTelefono)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                .addGap(35, 35, 35)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                .addGap(135, 135, 135)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jlDNI)
                     .addComponent(jlDomicilio)
@@ -140,7 +174,7 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
                     .addComponent(jlApellido))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addComponent(SalirBuscarCliente1)
                         .addGap(38, 38, 38))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -186,7 +220,7 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
                         .addComponent(SalirBuscarCliente1)
                         .addGap(27, 27, 27))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -225,24 +259,66 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_SalirBuscarCliente1ActionPerformed
 
+    private void jPanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jPanel1KeyTyped
+
+    private void jtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyReleased
+        // TODO add your handling code here:
+        
+        String telefonoEncontrado = jtTelefono.getText().trim();
+        modeloLista.clear();
+        if(telefonoEncontrado.isEmpty())return;
+        for (Map.Entry<Long, Contacto> en : Telefonica.d1.getCliente().entrySet()) {
+            String telefono = String.valueOf(en.getKey());
+            if(telefono.startsWith(telefonoEncontrado)){
+                modeloLista.addElement(en.getKey());
+            }
+            
+        }
+        if(modeloLista.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No se encontraron coincidencias");
+                jtTelefono.setText("");
+                
+            }
+        
+    }//GEN-LAST:event_jtTelefonoKeyReleased
+
+    private void jlistTelefonoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlistTelefonoValueChanged
+        // TODO add your handling code here:
+        for (Map.Entry<Long, Contacto> en : Telefonica.d1.getCliente().entrySet()) {
+            if(jlistTelefono.getSelectedValue()==en.getKey()){
+                
+                jtDNI.setText(String.valueOf(en.getValue().getDni()));
+                jtApellido.setText(en.getValue().getApellido());
+                jtNombre.setText(en.getValue().getNombre());
+                jtCiudad.setText(en.getValue().getCiudad());
+                jtDomicilio.setText(en.getValue().getDireccion());
+            }
+            break;
+        }
+        
+    }//GEN-LAST:event_jlistTelefonoValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SalirBuscarCliente1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlApellido;
     private javax.swing.JLabel jlCiudad;
     private javax.swing.JLabel jlDNI;
     private javax.swing.JLabel jlDomicilio;
     private javax.swing.JLabel jlNombre;
     private javax.swing.JLabel jlTelefono;
+    private javax.swing.JList<Long> jlistTelefono;
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtCiudad;
     private javax.swing.JTextField jtDNI;
     private javax.swing.JTextField jtDomicilio;
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtTelefono;
-    private javax.swing.JTextPane jtpTelefono;
     // End of variables declaration//GEN-END:variables
 }

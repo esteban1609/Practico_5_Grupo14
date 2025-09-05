@@ -126,6 +126,11 @@ public class Telefonica extends javax.swing.JFrame {
         jMenu1.add(mItemAgregarCliente);
 
         mItemBuscarCliente.setText("Buscar Cliente");
+        mItemBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemBuscarClienteActionPerformed(evt);
+            }
+        });
         jMenu1.add(mItemBuscarCliente);
 
         mItemBorrarCliente.setText("Borrar Cliente");
@@ -284,6 +289,17 @@ public class Telefonica extends javax.swing.JFrame {
         escritorio.add(busqueda);
         busqueda.toFront();
     }//GEN-LAST:event_mItemBuscarClienteCiudadActionPerformed
+
+    private void mItemBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        BuscarCliente busqueda=new BuscarCliente();
+        busqueda.setLocation((escritorio.getWidth() - busqueda.getWidth()) / 2, (escritorio.getHeight() - busqueda.getHeight()) / 2);
+        busqueda.setVisible(true);
+        escritorio.add(busqueda);
+        busqueda.toFront();
+    }//GEN-LAST:event_mItemBuscarClienteActionPerformed
 
     /**
      * @param args the command line arguments
