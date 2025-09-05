@@ -249,7 +249,7 @@ public class Telefonica extends javax.swing.JFrame {
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        borrarCliente bc = new borrarCliente();
+        BorrarCliente bc = new BorrarCliente();
         bc.setLocation((escritorio.getWidth() - bc.getWidth()) / 2, (escritorio.getHeight() - bc.getHeight()) / 2);
 
         bc.setVisible(true);

@@ -23,11 +23,11 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         llenarLista();
         
     }
-    private DefaultListModel modeloLista= new DefaultListModel();
+    private DefaultListModel<Long> modeloLista = new DefaultListModel<>();
     
     private void llenarLista(){
         modeloLista.clear();
-        if(Telefonica.d1==null || Telefonica.d1.getCliente()==null) return;
+        if(Telefonica.d1==null || Telefonica.d1.getCliente()==null){ return;}
         for (Map.Entry<Long, Contacto> en : Telefonica.d1.getCliente().entrySet()) {
             Long telefono = en.getKey();
             modeloLista.addElement(telefono);
@@ -264,6 +264,7 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         
         String telefonoEncontrado = jtTelefono.getText().trim();
         modeloLista.clear();
+        if (Telefonica.d1 == null || Telefonica.d1.getCliente() == null) return;
         if(telefonoEncontrado.isEmpty())return;
         for (Map.Entry<Long, Contacto> en : Telefonica.d1.getCliente().entrySet()) {
             String telefono = String.valueOf(en.getKey());
@@ -274,7 +275,6 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         }
         if(modeloLista.isEmpty()){
                 JOptionPane.showMessageDialog(this, "No se encontraron coincidencias");
-                jtTelefono.setText("");
                 
             }
         
@@ -282,17 +282,18 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
 
     private void jlistTelefonoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlistTelefonoValueChanged
         // TODO add your handling code here:
-        
+        if (Telefonica.d1 == null || Telefonica.d1.getCliente() == null) return;
         for (Map.Entry<Long, Contacto> en : Telefonica.d1.getCliente().entrySet()) {
-            if(jlistTelefono.getSelectedValue()==en.getKey()){
+            if(jlistTelefono.getSelectedValue().equals(en.getKey())){
                 
                 jtDNI.setText(String.valueOf(en.getValue().getDni()));
                 jtApellido.setText(en.getValue().getApellido());
                 jtNombre.setText(en.getValue().getNombre());
                 jtCiudad.setText(en.getValue().getCiudad());
                 jtDomicilio.setText(en.getValue().getDireccion());
+                break;
             }
-            break;
+            
         }
         
     }//GEN-LAST:event_jlistTelefonoValueChanged

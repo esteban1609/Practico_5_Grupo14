@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Leandro Naranjo
  */
-public class borrarCliente extends javax.swing.JInternalFrame {
+public class BorrarCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form BorrarCliente1
@@ -27,7 +27,7 @@ public class borrarCliente extends javax.swing.JInternalFrame {
     };
     private DefaultListModel modeloLista = new DefaultListModel();
 
-    public borrarCliente() {
+    public BorrarCliente() {
         initComponents();
         armarCabecera();
         llenarListaDni();
