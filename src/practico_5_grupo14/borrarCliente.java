@@ -5,7 +5,6 @@
 package practico_5_grupo14;
 
 import clases.Contacto;
-import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -26,7 +25,7 @@ public class borrarCliente extends javax.swing.JInternalFrame {
             return false;
         }
     };
-    DefaultListModel modeloLista = new DefaultListModel();
+    private DefaultListModel modeloLista = new DefaultListModel();
 
     public borrarCliente() {
         initComponents();
@@ -45,9 +44,12 @@ public class borrarCliente extends javax.swing.JInternalFrame {
     }
 
     private void llenarListaDni() {
+        modeloLista.clear();
+        if (Telefonica.d1 == null || Telefonica.d1.getCliente() == null) {
+            return;
+        }
         for (Contacto c : Telefonica.d1.getCliente().values()) {
-            int dni = c.getDni();
-            modeloLista.addElement(dni);
+            modeloLista.addElement(c.getDni());
         }
         listDni.setModel(modeloLista);
     }
@@ -185,46 +187,64 @@ public class borrarCliente extends javax.swing.JInternalFrame {
 
     private void txtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyReleased
         // TODO add your handling code here:
-        try {
-            String dniEncontrado = txtDni.getText().trim();
-            modeloLista.clear();
-            if (dniEncontrado.isEmpty()) {
-                return;
-            }
+        String dniIngresado = txtDni.getText().trim();
+        modeloLista.clear();
 
-            for (Contacto c : Telefonica.d1.getCliente().values()) {
-                String dniStr = String.valueOf(c.getDni());
-                
-                if (dniStr.startsWith(dniEncontrado)) {
-                    modeloLista.addElement(dniStr);
-                }
-            }
+        if (dniIngresado.isEmpty()) {
+            llenarListaDni(); // repuebla toda la lista si se borró el filtro
+            return;
+        }
 
-            // Si no encontró nada
-            if (modeloLista.isEmpty()) {
-                modeloLista.addElement("No se encontraron coincidencias");
-            }
+        for (Contacto c : Telefonica.d1.getCliente().values()) {
+            String dniStr = String.valueOf(c.getDni());
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "este campo solo acepta numeros");
+            if (dniStr.startsWith(dniIngresado)) {
+                modeloLista.addElement(c.getDni());
+            }
+        }
+
+        if (modeloLista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se encontraron coincidencias");
+            txtDni.getText();
         }
 
     }//GEN-LAST:event_txtDniKeyReleased
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        for (Map.Entry<Long, Contacto> entry : Telefonica.d1.getCliente().entrySet()) {
-        int filaSele = tablaClientes.getSelectedRow();
-        if (filaSele != -1) {
-            Telefonica.d1.getCliente().remove(entry.getKey());
-            modelo.removeRow(filaSele);
-            JOptionPane.showMessageDialog(this, "Cliente borrado");
-            txtDni.setText("");
+        Integer dniSeleccionado = listDni.getSelectedValue();
 
+        if (dniSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente de la lista.");
+            return;
+        }
+
+        Long telefono = null;
+
+        // Buscamos el teléfono asociado al DNI
+        for (Map.Entry<Long, Contacto> entry : Telefonica.d1.getCliente().entrySet()) {
+            if (dniSeleccionado.equals(entry.getValue().getDni())) {
+                telefono = entry.getKey();
+                break;
+            }
+        }
+
+        if (telefono == null) {
+            JOptionPane.showMessageDialog(this, "no se encontró el cliente en la agenda.");
+            return;
+        }
+
+        int res = JOptionPane.showConfirmDialog(this, "¿seguro que quiere eliminar este cliente?", "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (res == JOptionPane.YES_OPTION) {
+            Telefonica.d1.borrarContacto(telefono);
+            modeloLista.removeElement(dniSeleccionado);
+            modelo.setRowCount(0);
+            JOptionPane.showMessageDialog(this, "cliente eliminado");
         } else {
-            JOptionPane.showMessageDialog(this, "seleccione que cliente desea borrar");
+            JOptionPane.showMessageDialog(this, "el cliente no se eliminó");
         }
-        }
+
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -238,18 +258,27 @@ public class borrarCliente extends javax.swing.JInternalFrame {
 
     private void listDniValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listDniValueChanged
         // TODO add your handling code here:
-        for (Contacto c : Telefonica.d1.getCliente().values()) {
-            if(listDni.getSelectedValue()==c.getDni()){
-                modelo.setRowCount(0);
-                 modelo.addRow(new Object[]{
-                    c.getDni(),
-                    c.getApellido(),
-                    c.getNombre(),
-                    c.getDireccion(),
-                    c.getCiudad(),
-                    Telefonica.d1.buscarTelefono(c.getApellido())
-                });
-                break;
+        if (!evt.getValueIsAdjusting()) {
+            Object seleccionado = listDni.getSelectedValue();
+
+            if (seleccionado == null) {
+                return;
+            }
+            String dniSeleccionado = seleccionado.toString();
+            for (Contacto c : Telefonica.d1.getCliente().values()) {
+                String dniStr = String.valueOf(c.getDni());
+                if (dniSeleccionado.equals(dniStr)) {
+                    modelo.setRowCount(0); 
+                    modelo.addRow(new Object[]{
+                        c.getDni(),
+                        c.getApellido(),
+                        c.getNombre(),
+                        c.getDireccion(),
+                        c.getCiudad(),
+                        Telefonica.d1.buscarTelefono(c.getApellido())
+                    });
+                    break;
+                }
             }
         }
     }//GEN-LAST:event_listDniValueChanged
@@ -266,6 +295,5 @@ public class borrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtDni;
     // End of variables declaration//GEN-END:variables
-   
-}
 
+}

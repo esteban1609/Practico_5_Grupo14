@@ -71,11 +71,8 @@ Contactos asociados a dicha ciudad.*/
         return contactCiudad;
     }
     /*E. borrarContacto() que en base al número de teléfono elimina el contacto del directorio.*/
-    public void borrarContacto(Long telefono){
-        for (Map.Entry<Long, Contacto> entry : cliente.entrySet()) {
-            if (entry.getKey().equals(telefono)) {
-                cliente.remove(entry.getKey());
-            }
-        }
+       public void borrarContacto(Long telefono) {
+        cliente.remove(telefono);
     }
+    
 }
