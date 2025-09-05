@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  *
  * @author X
  */
-public class AgregarCliente extends javax.swing.JInternalFrame {
+public class agregarCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AgregarContacto
      */
-    public AgregarCliente() {
+    public agregarCliente() {
         initComponents();
         cargaBoxCiudades();
     }
